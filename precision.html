@@ -16,6 +16,8 @@
 
     <input type="text" id="inputText">
     <button id="addEndButton" onclick="addEnd()">Add end</button>
+    <button id="addFrontButton" onclick="addFront()">Add front</button>
+    <button id="removeButton" onclick="remove()">Remove</button>
 
     <div class="flex-container">
         <!-- Existing divs will be added here -->
@@ -60,6 +62,25 @@
             newDiv.innerHTML = inputValue;
             newDiv.className = "divlist";
             container.appendChild(newDiv);
+        }
+
+        function addFront() {
+            var inputValue = document.getElementById("inputText").value;
+            var container = document.querySelector(".flex-container");
+            var newDiv = document.createElement("div");
+            newDiv.innerHTML = inputValue;
+            newDiv.className = "divlist";
+            container.insertBefore(newDiv, container.firstChild);
+        }
+
+        function remove() {
+            var divListItems = document.getElementsByClassName("divlist");
+            var length = divListItems.length;
+            if (length > 0) {
+                var middleIndex = Math.floor(length / 2);
+                var container = document.querySelector(".flex-container");
+                container.removeChild(divListItems[middleIndex]);
+            }
         }
     </script>
 </body>
