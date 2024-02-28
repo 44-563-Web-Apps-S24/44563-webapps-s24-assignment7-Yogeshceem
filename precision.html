@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yogesh Speed Check</title>
+    <title>Yogesh builds list with divs</title>
 </head>
 <body>
-    <h2>Your Name Speed Check</h2>
+    <h2>Yogesh Speed Check</h2>
 
     <div id="target">Your time: </div>
     <div id="counter">Count: </div>
@@ -14,14 +14,24 @@
     <button id="startButton" onclick="startTime()">Start Timer</button>
     <button id="stopButton">Stop Timer</button>
 
+    <input type="text" id="inputText">
+    <button id="addEndButton" onclick="addEnd()">Add end</button>
+
+    <div class="flex-container">
+        <!-- Existing divs will be added here -->
+    </div>
+
     <script>
         var stopTime;
+
         function recordTime() {
             stopTime = Date.now();
             console.log("Stop time recorded:", stopTime);
         }
+
         var stopButton = document.getElementById("stopButton");
         stopButton.onclick = recordTime;
+
         function startTime() {
             document.getElementById("counter").innerHTML = "Count: ";
 
@@ -34,16 +44,22 @@
             }
 
             setTimeout(function() {
-                if (typeof stopTime === 'undefined') 
-                {
+                if (typeof stopTime === 'undefined') {
                     document.getElementById("target").innerHTML = "Too Slow";
-                } 
-                else 
-                {
+                } else {
                     var elapsedTime = stopTime - Date.now();
                     document.getElementById("target").innerHTML = "Time was " + Math.abs(elapsedTime) + " milliseconds";
                 }
             }, 4000);
+        }
+
+        function addEnd() {
+            var inputValue = document.getElementById("inputText").value;
+            var container = document.querySelector(".flex-container");
+            var newDiv = document.createElement("div");
+            newDiv.innerHTML = inputValue;
+            newDiv.className = "divlist";
+            container.appendChild(newDiv);
         }
     </script>
 </body>
