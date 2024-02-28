@@ -55,9 +55,12 @@
     function stopTimer() {
         clearInterval(timerInterval);
     }
+   
+    var stopButton = document.getElementById("stopButton");
 
-    // Step 5c: Set onclick property of the stop button to call recordTime()
-    document.getElementById("stopButton").onclick = recordTime;
+    stopButton.onclick = recordTime;
+
+
 </script>
 
 </body>
