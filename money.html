@@ -27,7 +27,7 @@
             margin-top: 20px;
         }
         #help {
-            display: none; /* Initially hide the help report */
+            cursor: pointer; 
         }
         .row {
             display: flex;
@@ -52,6 +52,7 @@
     </div>
     <div class="game-field">
         <!-- 7 rows -->
+        <!-- Remaining HTML code for the game field -->
         <div class="row">
             <!-- 5 locations in each row -->
             <!-- Add unique IDs and onclick properties to each location -->
@@ -62,7 +63,7 @@
             <div class="location" id="loc4" onclick="check(4)" style="background-image: url('building.jpg')"></div>
         </div>
         <div class="row">
-            <!-- 5 locations in each row -->
+            
             <div class="location" id="loc5" onclick="check(5)" style="background-image: url('building.jpg')"></div>
             <div class="location" id="loc6" onclick="check(6)" style="background-image: url('coin.jpg')"></div>
             <div class="location" id="loc7" onclick="check(7)" style="background-image: url('fancier_coin.jpg')"></div>
@@ -70,7 +71,7 @@
             <div class="location" id="loc9" onclick="check(9)" style="background-image: url('building.jpg')"></div>
         </div>
         <div class="row">
-            <!-- 5 locations in each row -->
+            
             <div class="location" id="loc10" onclick="check(10)" style="background-image: url('building.jpg')"></div>
             <div class="location" id="loc11" onclick="check(11)" style="background-image: url('coin.jpg')"></div>
             <div class="location" id="loc12" onclick="check(12)" style="background-image: url('fancier_coin.jpg')"></div>
@@ -78,7 +79,7 @@
             <div class="location" id="loc14" onclick="check(14)" style="background-image: url('building.jpg')"></div>
         </div>
         <div class="row">
-            <!-- 5 locations in each row -->
+            
             <div class="location" id="loc15" onclick="check(15)" style="background-image: url('building.jpg')"></div>
             <div class="location" id="loc16" onclick="check(16)" style="background-image: url('coin.jpg')"></div>
             <div class="location" id="loc17" onclick="check(17)" style="background-image: url('fancier_coin.jpg')"></div>
@@ -86,7 +87,7 @@
             <div class="location" id="loc19" onclick="check(19)" style="background-image: url('building.jpg')"></div>
         </div>
         <div class="row">
-            <!-- 5 locations in each row -->
+           
             <div class="location" id="loc20" onclick="check(20)" style="background-image: url('building.jpg')"></div>
             <div class="location" id="loc21" onclick="check(21)" style="background-image: url('coin.jpg')"></div>
             <div class="location" id="loc22" onclick="check(22)" style="background-image: url('fancier_coin.jpg')"></div>
@@ -94,7 +95,7 @@
             <div class="location" id="loc24" onclick="check(24)" style="background-image: url('building.jpg')"></div>
         </div>
         <div class="row">
-            <!-- 5 locations in each row -->
+            
             <div class="location" id="loc25" onclick="check(25)" style="background-image: url('building.jpg')"></div>
             <div class="location" id="loc26" onclick="check(26)" style="background-image: url('coin.jpg')"></div>
             <div class="location" id="loc27" onclick="check(27)" style="background-image: url('fancier_coin.jpg')"></div>
@@ -102,17 +103,17 @@
             <div class="location" id="loc29" onclick="check(29)" style="background-image: url('building.jpg')"></div>
         </div>
         <div class="row">
-            <!-- 5 locations in each row -->
+            
             <div class="location" id="loc30" onclick="check(30)" style="background-image: url('building.jpg')"></div>
             <div class="location" id="loc31" onclick="check(31)" style="background-image: url('coin.jpg')"></div>
             <div class="location" id="loc32" onclick="check(32)" style="background-image: url('fancier_coin.jpg')"></div>
             <div class="location" id="loc33" onclick="check(33)" style="background-image: url('monster.jpg')"></div>
             <div class="location" id="loc34" onclick="check(34)" style="background-image: url('building.jpg')"></div>
-        </div>        
+        </div>      
     </div>
     <div id="locations">Number of locations checked is 0</div>
     <div id="score">Score is 0</div>
-    <div id="help">Help report</div>
+    <div id="help">Click for help</div>
 
     
     <script>
@@ -125,12 +126,17 @@
         var gameOver = false;
 
         
-        function check(position) 
-        {
+        function check(position) {
             
             if (gameOver) return;
+
+           
             var id = "loc" + position;
+
+            
             var imgElement = document.getElementById(id);
+
+            
             if (position === monsterLocation) {
                 imgElement.style.backgroundImage = "url('monster.jpg')";
                 gameOver = true; 
@@ -142,17 +148,24 @@
                 imgElement.style.backgroundImage = "url('coin.jpg')";
                 score += 1; 
             }
-            locations++;            
+
+            
+            locations++;
+
+            
             document.getElementById("locations").textContent = "Number of locations checked is " + locations;
+
+           
             lastLocation = position;
         }
+
         
         function help() {
-
+            
             var lastRow = Math.floor(lastLocation / 5);
             var lastCol = lastLocation % 5;
 
-    
+            
             var kinshipLocations = [
                 lastLocation - 1, // left
                 lastLocation + 1, // right
@@ -163,7 +176,7 @@
             for (var i = 0; i < kinshipLocations.length; i++) {
                 var kinshipLoc = kinshipLocations[i];
 
-        
+                
                 if (kinshipLoc < 0) kinshipLoc += 35;
                 if (kinshipLoc >= 35) kinshipLoc -= 35;
 
@@ -173,19 +186,22 @@
                 }
             }
 
-    
+            
             var monsterRow = Math.floor(monsterLocation / 5);
             var monsterCol = monsterLocation % 5;
 
-    
+            
             if (Math.abs(lastRow - monsterRow) <= 1 && Math.abs(lastCol - monsterCol) <= 1) {
                 document.getElementById("help").textContent = "Grrr";
                 return;
             }
 
+            
             document.getElementById("help").textContent = "All clear";
         }
 
+        
+        document.getElementById("help").onclick = help;
     </script>
 </body>
 </html>
