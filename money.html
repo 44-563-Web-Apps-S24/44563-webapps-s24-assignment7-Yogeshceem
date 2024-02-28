@@ -146,12 +146,13 @@
             document.getElementById("locations").textContent = "Number of locations checked is " + locations;
             lastLocation = position;
         }
+        
         function help() {
-            
+
             var lastRow = Math.floor(lastLocation / 5);
             var lastCol = lastLocation % 5;
 
-            
+    
             var kinshipLocations = [
                 lastLocation - 1, // left
                 lastLocation + 1, // right
@@ -162,7 +163,7 @@
             for (var i = 0; i < kinshipLocations.length; i++) {
                 var kinshipLoc = kinshipLocations[i];
 
-                
+        
                 if (kinshipLoc < 0) kinshipLoc += 35;
                 if (kinshipLoc >= 35) kinshipLoc -= 35;
 
@@ -171,18 +172,20 @@
                     return;
                 }
             }
+
+    
             var monsterRow = Math.floor(monsterLocation / 5);
             var monsterCol = monsterLocation % 5;
 
-            
+    
             if (Math.abs(lastRow - monsterRow) <= 1 && Math.abs(lastCol - monsterCol) <= 1) {
                 document.getElementById("help").textContent = "Grrr";
                 return;
             }
 
-            
             document.getElementById("help").textContent = "All clear";
         }
+
     </script>
 </body>
 </html>
