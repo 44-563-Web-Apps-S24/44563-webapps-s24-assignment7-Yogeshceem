@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Precision Speed Check by ChatGPT</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <h2>Yogesh Precision Speed Check</h2>
+
+  <h5>Press the button as close to zero time without being late</h5>
+
+  <div id="target">Your time: <span id="timer">00:00:00</span></div>
+  <div id="counter">Count: 0</div>
+  <button type="button" class="btn btn-success" onclick="startTimer()">Start Timer</button>
+  <button type="button" class="btn btn-danger" onclick="stopTimer()">Stop Timer</button>
+
+  <script> 
+    var timerInterval;
+    var startTime;
+    var stopTime = undefined; // Step 5a: Initialize stopTime to undefined
+    var count = 0;
+
+    function startTimer() {
+        startTime = Date.now();
+        timerInterval = setInterval(updateTimer, 1000);
+    }
+
+    function updateTimer() {
+        var elapsedTime = Date.now() - startTime;
+        var formattedTime = formatTime(elapsedTime);
+        document.getElementById("timer").textContent = formattedTime;
+    }
+
+    function formatTime(ms) {
+        var hours = Math.floor(ms / 3600000);
+        var minutes = Math.floor((ms % 3600000) / 60000);
+        var seconds = Math.floor((ms % 60000) / 1000);
+        return pad(hours) + ":" + pad(minutes) + ":" + pad(seconds);
+    }
+
+    function pad(num) {
+        return (num < 10 ? "0" : "") + num;
+    }
+
+    function recordTime() {
+        stopTime = Date.now(); // Step 5b: Set stopTime to current time
+        console.log("Stop Time:", stopTime); // Step 5b: Log stop time to console
+    }
+
+    function stopTimer() {
+        clearInterval(timerInterval);
+    }
+
+    // Step 5c: Set onclick property of the stop button to call recordTime()
+    document.getElementById("stopButton").onclick = recordTime;
+</script>
+
+</body>
+</html>
