@@ -110,83 +110,79 @@
             <div class="location" id="loc34" onclick="check(34)" style="background-image: url('building.jpg')"></div>
         </div>        
     </div>
-    <div id="score">
-        <p>Score is zero.</p>
-    </div>
-    <div>
-        <p onclick="help()">Click for help.</p>
-    </div>
-    <div id="help">
-        <p>Help report</p>
-    </div>
+    <div id="locations">Number of locations checked is 0</div>
+    <div id="score">Score is 0</div>
+    <div id="help">Help report</div>
 
+    
     <script>
-        // Step 4: Declare a variable ids which is an array of 35 strings, where each one is one of the unique ids from step 1.
-        var ids = [
-            "location0", "location1", "location2", "location3", "location4","location5", "location6", "location7", "location8", "location9","location10", "location11", "location12", "location13", "location14","location15", "location16", "location17", "location18", "location19","location20", "location21", "location22", "location23", "location24","location25", "location26", "location27", "location28", "location29","location30", "location31", "location32", "location33", "location34"
-        ];
-
-        // Step 5: Declare a variable score which is 0.
+        
         var score = 0;
-
-        // Step 6: Declare a variable locations which is 0.
         var locations = 0;
-
-        // Step 7: Declare a variable lastLocation which is 0.
         var lastLocation = 0;
-
-        // Step 8: Declare a variable fancyCoinLocations which is the array [2, 5, 14, 19, 23, 33]
         var fancyCoinLocations = [2, 5, 14, 19, 23, 33];
-
-        // Step 9: Declare a variable monsterLocation which is 20
         var monsterLocation = 20;
-
-        // Step 10: Declare a variable gameOver which is false
         var gameOver = false;
 
-        // Step 11: Create the function check(position)
-        function check(position) {
-            // Step 11a: If the game is over, do nothing.
+        
+        function check(position) 
+        {
+            
             if (gameOver) return;
-
-            // Step 11b: Use the ids array to get the id for the image.
-            var id = ids[position];
-
-            // Step 11c: Get the image element associated with that id.
-            var locationElement = document.getElementById(id);
-
-            // Step 11d: Change the source to the monster or fancy coin depending on the location.
+            var id = "loc" + position;
+            var imgElement = document.getElementById(id);
             if (position === monsterLocation) {
-                locationElement.style.backgroundImage = "url('monster.jpg')";
-                gameOver
+                imgElement.style.backgroundImage = "url('monster.jpg')";
+                gameOver = true; 
+                score -= 5; 
+            } else if (fancyCoinLocations.includes(position)) {
+                imgElement.style.backgroundImage = "url('fancier_coin.jpg')";
+                score += 3; 
+            } else {
+                imgElement.style.backgroundImage = "url('coin.jpg')";
+                score += 1; 
             }
+            locations++;            
+            document.getElementById("locations").textContent = "Number of locations checked is " + locations;
+            lastLocation = position;
         }
         function help() {
-    // Step a: Determine row and column of the last location
-        var lastRow = Math.floor(lastLocation / 5);
-        var lastCol = lastLocation % 5;
+            
+            var lastRow = Math.floor(lastLocation / 5);
+            var lastCol = lastLocation % 5;
 
-    // Step b: Compute kinship locations
-        var kinshipLocations = [
-            lastLocation - 1, // Left
-            lastLocation + 1, // Right
-            lastLocation - 5, // Up
-            lastLocation + 5  // Down
-        ];
+            
+            var kinshipLocations = [
+                lastLocation - 1, // left
+                lastLocation + 1, // right
+                lastLocation - 5, // top
+                lastLocation + 5  // bottom
+            ];
 
-    // Check if any kinship location is in the fancyCoinLocations array
-        for (var i = 0; i < kinshipLocations.length; i++) {
-            if (fancyCoinLocations.includes(kinshipLocations[i])) {
-                return "So close";
+            for (var i = 0; i < kinshipLocations.length; i++) {
+                var kinshipLoc = kinshipLocations[i];
+
+                
+                if (kinshipLoc < 0) kinshipLoc += 35;
+                if (kinshipLoc >= 35) kinshipLoc -= 35;
+
+                if (fancyCoinLocations.includes(kinshipLoc)) {
+                    document.getElementById("help").textContent = "So close";
+                    return;
+                }
             }
-        }
+            var monsterRow = Math.floor(monsterLocation / 5);
+            var monsterCol = monsterLocation % 5;
 
-    // If the last location is adjacent to the monster location
-        if (Math.abs(lastRow - Math.floor(monsterLocation / 5)) <= 1 &&
-            Math.abs(lastCol - (monsterLocation % 5)) <= 1) {
-            return "Grrr";
-        }
+            
+            if (Math.abs(lastRow - monsterRow) <= 1 && Math.abs(lastCol - monsterCol) <= 1) {
+                document.getElementById("help").textContent = "Grrr";
+                return;
+            }
 
-    // If no fancy coin locations or monster adjacency, return "All clear"
-        return "All clear";
-}
+            
+            document.getElementById("help").textContent = "All clear";
+        }
+    </script>
+</body>
+</html>
