@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find the coins by Yogesh</title>
+    <!-- Add your CSS styles here -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        #instructions {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 20px;
+        }
+        #locations, #score, #help {
+            text-align: center;
+            margin-top: 20px;
+        }
+        #help {
+            display: none; /* Initially hide the help report */
+        }
+        .row {
+            display: flex;
+            justify-content: center;
+        }
+        .location {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            margin: 5px;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Find the coins by Yogesh</h1>
+    </header>
+    <div id="instructions">
+        <p>Click on the locations to find coins, beware the monster</p>
+    </div>
+    <div class="game-field">
+        <!-- 7 rows -->
+        <div class="row">
+            <!-- 5 locations in each row -->
+            <div class="location" style="background-image: url('building.jpg')"></div>
+            <div class="location" style="background-image: url('coin.jpg')"></div>
+            <div class="location" style="background-image: url('fancier_coin.jpg')"></div>
+            <div class="location" style="background-image: url('monster.jpg')"></div>
+            <div class="location" style="background-image: url('building.jpg')"></div>
+        </div>
+        <div class="row">
+            <!-- 5 locations in each row -->
+            <div class="location" style="background-image: url('building.jpg')"></div>
+            <div class="location" style="background-image: url('coin.jpg')"></div>
+            <div class="location" style="background-image: url('fancier_coin.jpg')"></div>
+            <div class="location" style="background-image: url('monster.jpg')"></div>
+            <div class="location" style="background-image: url('building.jpg')"></div>
+        </div>
+        <div class="row">
+            <!-- 5 locations in each row -->
+            <div class="location" style="background-image: url('building.jpg')"></div>
+            <div class="location" style="background-image: url('coin.jpg')"></div>
+            <div class="location" style="background-image: url('fancier_coin.jpg')"></div>
+            <div class="location" style="background-image: url('monster.jpg')"></div>
+            <div class="location" style="background-image: url('building.jpg')"></div>
+        </div>
+        <div class="row">
+            <!-- 5 locations in each row -->
+            <div class="location" style="background-image: url('building.jpg')"></div>
+            <div class="location" style="background-image: url('coin.jpg')"></div>
+            <div class="location" style="background-image: url('fancier_coin.jpg')"></div>
+            <div class="location" style="background-image: url('monster.jpg')"></div>
+            <div class="location" style="background-image: url('building.jpg')"></div>
+        </div>
+        <div class="row">
+            <!-- 5 locations in each row -->
+            <div class="location" style="background-image: url('building.jpg')"></div>
+            <div class="location" style="background-image: url('coin.jpg')"></div>
+            <div class="location" style="background-image: url('fancier_coin.jpg')"></div>
+            <div class="location" style="background-image: url('monster.jpg')"></div>
+            <div class="location" style="background-image: url('building.jpg')"></div>
+        </div>
+        <div class="row">
+            <!-- 5 locations in each row -->
+            <div class="location" style="background-image: url('building.jpg')"></div>
+            <div class="location" style="background-image: url('coin.jpg')"></div>
+            <div class="location" style="background-image: url('fancier_coin.jpg')"></div>
+            <div class="location" style="background-image: url('monster.jpg')"></div>
+            <div class="location" style="background-image: url('building.jpg')"></div>
+        </div>
+        <div class="row">
+            <!-- 5 locations in each row -->
+            <div class="location" style="background-image: url('building.jpg')"></div>
+            <div class="location" style="background-image: url('coin.jpg')"></div>
+            <div class="location" style="background-image: url('fancier_coin.jpg')"></div>
+            <div class="location" style="background-image: url('monster.jpg')"></div>
+            <div class="location" style="background-image: url('building.jpg')"></div>
+        </div>
+    </div>
+    <div id="score">
+        <p>Score is zero.</p>
+    </div>
+    <div>
+        <p>Click for help.</p>
+    </div>
+    <div id="help">
+        <p>Help report</p>
+    </div>
+</body>
+</html>
