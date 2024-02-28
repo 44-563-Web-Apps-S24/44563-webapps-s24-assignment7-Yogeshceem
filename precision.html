@@ -18,6 +18,7 @@
     <button id="addEndButton" onclick="addEnd()">Add end</button>
     <button id="addFrontButton" onclick="addFront()">Add front</button>
     <button id="removeButton" onclick="remove()">Remove</button>
+    <button id="swapButton" onclick="swapElements()">Swap</button> <!-- New button -->
 
     <div class="flex-container">
         <!-- Existing divs will be added here -->
@@ -81,6 +82,34 @@
                 var container = document.querySelector(".flex-container");
                 container.removeChild(divListItems[middleIndex]);
             }
+        }
+
+        // New function to swap elements
+        function swapElements() {
+            var divListItems = document.getElementsByClassName("divlist");
+            var length = divListItems.length;
+
+            // Check if there are at least two elements to swap
+            if (length < 2) {
+                return;
+            }
+
+            // Randomly select two distinct indexes
+            var index1 = Math.floor(Math.random() * length);
+            var index2 = Math.floor(Math.random() * length);
+            while (index2 === index1) {
+                index2 = Math.floor(Math.random() * length);
+            }
+
+            // Get the elements to swap
+            var item1 = divListItems[index1];
+            var item2 = divListItems[index2];
+
+            // Swap their positions
+            var parent = item1.parentNode;
+            var nextSibling = item2.nextSibling;
+            parent.insertBefore(item1, item2);
+            parent.insertBefore(item2, nextSibling);
         }
     </script>
 </body>

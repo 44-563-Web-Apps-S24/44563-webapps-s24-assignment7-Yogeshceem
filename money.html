@@ -125,6 +125,25 @@
         var monsterLocation = 20;
         var gameOver = false;
 
+        function resetGame() {
+            score = 0;
+            locations = 0;
+            gameOver = false;
+            document.getElementById("score").textContent = "Score is " + score;
+            document.getElementById("locations").textContent = "Number of locations checked is " + locations;
+
+            // Randomly select new positions for monster and fancy coins
+            monsterLocation = Math.floor(Math.random() * 35);
+            fancyCoinLocations = [];
+            while (fancyCoinLocations.length < 6) {
+                var rand = Math.floor(Math.random() * 35);
+                if (rand !== monsterLocation && !fancyCoinLocations.includes(rand)) {
+                    fancyCoinLocations.push(rand);
+                }
+            }
+        }
+
+
         
         function check(position) {
             
